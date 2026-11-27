@@ -1,0 +1,51 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    String title = (String) request.getAttribute("errTitle");
+    String message = (String) request.getAttribute("errMessage");
+
+    if (title == null) title = "Uh oh!";
+    if (message == null) message = "Something went wrong.";
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+
+    
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/errorStyles.css">
+</head>
+<body>
+
+<div class="site">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <jsp:include page="<%= (String)application.getAttribute("header") %>" />
+    </header>
+
+    <!-- MAIN -->
+    <main class="site-main">
+        <div class="error-card">
+            <h1 class="error-title"><%= title %></h1>
+            <p class="error-message"><%= message %></p>
+
+            <div class="actions">
+                <a class="btn-primary" href="<%= request.getContextPath() %>/index.jsp">
+                    Go back
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <jsp:include page="<%= (String)application.getAttribute("footer") %>" />
+    </footer>
+
+</div>
+
+</body>
+</html>
